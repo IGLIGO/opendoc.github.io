@@ -20,7 +20,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Corumi opendoc'
+project = 'Gligo opendoc'
 copyright = '2022, Corumi'
 author = 'corumi'
 
@@ -107,7 +107,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'corumi-opendoc-doc'
+htmlhelp_basename = 'Gligo-opendoc-doc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
