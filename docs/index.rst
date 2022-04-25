@@ -8,6 +8,7 @@
 .. toctree::
     :maxdepth: 1
     :caption: 通信协议
+    protocol/classL/classL
     protocol/classCplus/classCplus
     蓝牙接口 <protocol/bluetooth_port>
     protocol/device_list
