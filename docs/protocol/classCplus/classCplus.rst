@@ -163,22 +163,22 @@
 
 .. admonition:: 例1
 
-	|	:guilabel:`->MCU`: $FC= ``0x1F`` , $length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
+	|	:guilabel:`->MCU`: fc= ``0x1F`` , length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
 	|		``0x02`` , ``0x01`` :guilabel:`执行 0x02 操作, 参数 0x01`
-	|	:guilabel:`->MCU`: $FC= ``0x20`` , $length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
+	|	:guilabel:`->MCU`: fc= ``0x20`` , length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
 	|		``0x02`` , ``0x00`` :guilabel:`执行 0x02 操作, 参数 0x00`
-	|	:guilabel:`->MCU`: $FC= ``0x21`` , $length= ``4`` , ``0x01`` , :guilabel:`调用 0x01 接口`
+	|	:guilabel:`->MCU`: fc= ``0x21`` , length= ``4`` , ``0x01`` , :guilabel:`调用 0x01 接口`
 	|		``0x00`` , ``0x00`` , ``0xF0`` , :guilabel:`执行 0x00 操作, 参数 0x00, 0xF0`
 	|
-	|	:guilabel:`->MCU`: $FC= ``0x1F`` , $length= ``0`` :guilabel:`返回流控为 0x1F 的 ACK`
-	|	:guilabel:`->MCU`: $FC= ``0x21`` , $length= ``0`` :guilabel:`返回流控为 0x21 的 ACK`
+	|	:guilabel:`->MCU`: fc= ``0x1F`` , length= ``0`` :guilabel:`返回流控为 0x1F 的 ACK`
+	|	:guilabel:`->MCU`: fc= ``0x21`` , length= ``0`` :guilabel:`返回流控为 0x21 的 ACK`
 	|
 	|	*未收到流控 ``0x20`` 的ACK，意味着完整传输流程没有完成，需要重传。*
 	|
-	|	:guilabel:`MCU->`: $FC= ``0x20`` , $length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
+	|	:guilabel:`MCU->`: fc= ``0x20`` , length= ``3`` , ``0xAB`` , :guilabel:`调用 0xAB 接口`
 	|		0x02 , 0x00 :guilabel:`执行 0x02 操作, 参数 0x00`
 	|
-	|	:guilabel:`MCU->`: $FC= ``0x20`` , $length= ``0`` :guilabel:`返回流控为 0x20 的 ACK` 
+	|	:guilabel:`MCU->`: fc= ``0x20`` , length= ``0`` :guilabel:`返回流控为 0x20 的 ACK` 
 
 
 .. tip::
@@ -189,18 +189,18 @@
 	|	本例在 递增流控 与 缓存深度 ``16`` 条件下进行描述。
 	|	缓存深度 ``16`` 表示若收到的流控位与最近收到的 ``16`` 个流控位中有出现相同，则视为重复。
 	|
-	|	:guilabel:`->MCU`: $FC= ``0x1F`` , $length= ``3`` , ``0xAB`` ,
+	|	:guilabel:`->MCU`: fc= ``0x1F`` , length= ``3`` , ``0xAB`` ,
 	|		``0x02`` , ``0x01`` :guilabel:`调用 0xAB 接口, 执行 0x02 操作, 参数 0x01`
-	|	:guilabel:`->MCU`: $FC= ``0x20`` , $length= ``3`` , ``0xAB`` ,
+	|	:guilabel:`->MCU`: fc= ``0x20`` , length= ``3`` , ``0xAB`` ,
 	|		``0x02`` , ``0x00`` :guilabel:`调用 0xAB 接口, 执行 0x02 操作, 参数 0x00`
-	|	:guilabel:`->MCU`: $FC= ``0x21`` , $length= ``4`` , ``0x01`` ,
+	|	:guilabel:`->MCU`: fc= ``0x21`` , length= ``4`` , ``0x01`` ,
 	|		``0x00`` , ``0x00`` , ``0xF0`` :guilabel:`调用 0x01 接口, 执行 0x00 操作, 参数 0x00 , 0xF0`
-	|	:guilabel:`->MCU`: $FC= ``0x20`` , $length= ``3`` , ``0xAB`` ,
+	|	:guilabel:`->MCU`: fc= ``0x20`` , length= ``3`` , ``0xAB`` ,
 	|		``0x02`` , ``0x01`` :guilabel:`调用 0xAB 接口, 执行 0x02 操作, 参数 0x01`
 	|
-	|	:guilabel:`MCU->`: $FC= ``0x1F`` , $length= ``0`` :guilabel:`返回流控为 0x1F 的 ACK`
-	|	:guilabel:`MCU->`: $FC= ``0x20`` , $length= ``0`` :guilabel:`返回流控为 0x20 的 ACK`
-	|	:guilabel:`MCU->`: $FC= ``0x21`` , $length= ``0`` :guilabel:`返回流控为 0x21 的 ACK`
+	|	:guilabel:`MCU->`: fc= ``0x1F`` , length= ``0`` :guilabel:`返回流控为 0x1F 的 ACK`
+	|	:guilabel:`MCU->`: fc= ``0x20`` , length= ``0`` :guilabel:`返回流控为 0x20 的 ACK`
+	|	:guilabel:`MCU->`: fc= ``0x21`` , length= ``0`` :guilabel:`返回流控为 0x21 的 ACK`
 	|	第二次发送的流控 ``0x20`` 因为与之前重复，所以此处忽略。
 	|	实际接收为：:guilabel:`0xAB 接口, 执行 0x02 操作, 参数 0x00`
 
@@ -225,7 +225,7 @@
   
 .. admonition:: 例
 
-	|	:guilabel:`->MCU`: $FC= ``0x1F`` , $length= ``4`` ,
+	|	:guilabel:`->MCU`: fc= ``0x1F`` , length= ``4`` ,
 	|		``0xAB`` , ``0x02`` , ``0x01`` , ``0x01`` , ``0xFF`` , ``0x00`` 
 	|	此帧数据中，长度位为 ``4`` ，所以解析的载荷部分为:
 	|		``0xAB`` , ``0x02`` , ``0x01`` , ``0x01`` 
